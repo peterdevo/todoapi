@@ -19,7 +19,7 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProjectById(@PathVariable int id) {
+    public ResponseEntity<?> getProjectById(@PathVariable String id) {
         return ResponseHandler.handleResponse(projectService.getProjectById(id));
     }
 
@@ -34,7 +34,7 @@ public class ProjectController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProject(@PathVariable int id) {
+    public ResponseEntity<?> deleteProject(@PathVariable String id) {
         return ResponseHandler.handleResponse(projectService.deleteProject(id));
     }
 }

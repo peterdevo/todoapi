@@ -7,11 +7,11 @@ import java.util.List;
 public interface ProjectManagement {
     List<Project> getProjects();
 
-    Project getProjectById(int id);
+    Project getProjectById(String id);
 
     int addProject(Project project);
 
     int updateProject(Project project);
 
-    int deleteUpdate(int id);
+    int deleteProject(String id);
 }

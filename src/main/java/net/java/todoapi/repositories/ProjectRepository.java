@@ -17,16 +17,16 @@ public class ProjectRepository implements ProjectManagement {
     public List<Project> getProjects() {
         var query = "SELECT * FROM project";
         return this.jdbcTemplate.query(query, (rs, row) -> {
-            return new Project(rs.getInt("id"), rs.getString("title"),
+            return new Project(rs.getString("id"), rs.getString("title"),
                     rs.getString("details"), rs.getBoolean("isCompleted"),
                     rs.getDate("created"));
         });
     }
 
-    public Project getProjectById(int id) {
+    public Project getProjectById(String id) {
         var query = "SELECT * FROM project WHERE id = ? ";
         List<Project> projects = jdbcTemplate.query(query, new Object[]{id}, (rs, row) -> {
-            return new Project(rs.getInt("id"), rs.getString("title"),
+            return new Project(rs.getString("id"), rs.getString("title"),
                     rs.getString("details"), rs.getBoolean("isCompleted"),
                     rs.getDate("created"));
         });
@@ -39,15 +39,15 @@ public class ProjectRepository implements ProjectManagement {
 
     public int addProject(Project project) {
         var query = "INSERT INTO project (id,title,details,isCompleted,created) VALUES (?,?,?,?,?)";
-        return jdbcTemplate.update(query, project.getId(), project.getTitle(), project.getDetails(), project.getCompleted(), project.getCreated());
+        return jdbcTemplate.update(query, project.getId(), project.getTitle(), project.getDetails(), project.getIsCompleted(), project.getCreated());
     }
 
     public int updateProject(Project project) {
         var query = "UPDATE project SET title = ?, details = ?, isCompleted = ?, created = ? WHERE id = ?";
-        return jdbcTemplate.update(query, project.getTitle(), project.getDetails(), project.getCompleted(), project.getCreated(), project.getId());
+        return jdbcTemplate.update(query, project.getTitle(), project.getDetails(), project.getIsCompleted(), project.getCreated(), project.getId());
     }
 
-    public int deleteUpdate(int id) {
+    public int deleteProject(String id) {
         var query = "DELETE FROM project WHERE id = ?";
         return jdbcTemplate.update(query, id);
     }

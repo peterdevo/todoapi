@@ -18,7 +18,7 @@ public class ProjectService {
         return ResultHandler.success(projectRepository.getProjects());
     }
 
-    public ResultHandler<?> getProjectById(int id) {
+    public ResultHandler<?> getProjectById(String id) {
         return ResultHandler.success(projectRepository.getProjectById(id));
     }
 
@@ -44,12 +44,12 @@ public class ProjectService {
 
     }
 
-    public ResultHandler<?> deleteProject(int id) {
+    public ResultHandler<?> deleteProject(String id) {
         var proj = projectRepository.getProjectById(id);
         if (proj == null) {
             return null;
         }
-        var result = projectRepository.deleteUpdate(id) > 0;
+        var result = projectRepository.deleteProject(id) > 0;
         if (!result) {
             return ResultHandler.failure("Failed to delete");
         }

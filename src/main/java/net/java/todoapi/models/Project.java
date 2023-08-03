@@ -3,13 +3,13 @@ package net.java.todoapi.models;
 import java.sql.Date;
 
 public class Project {
-    int id;
+    String id;
     String title;
     String details;
     Boolean isCompleted;
     Date created;
 
-    public Project(int id, String title, String details, Boolean isCompleted, Date created) {
+    public Project(String id, String title, String details, Boolean isCompleted, Date created) {
         this.id = id;
         this.title = title;
         this.details = details;
@@ -17,11 +17,11 @@ public class Project {
         this.created = created;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,12 +41,12 @@ public class Project {
         this.details = details;
     }
 
-    public Boolean getCompleted() {
+    public Boolean getIsCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(Boolean completed) {
-        isCompleted = completed;
+    public void setIsCompleted(Boolean isCompleted) {
+        isCompleted = isCompleted;
     }
 
     public Date getCreated() {
