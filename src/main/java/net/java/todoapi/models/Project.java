@@ -46,7 +46,7 @@ public class Project {
     }
 
     public void setIsCompleted(Boolean isCompleted) {
-        isCompleted = isCompleted;
+        this.isCompleted = isCompleted;
     }
 
     public Date getCreated() {
