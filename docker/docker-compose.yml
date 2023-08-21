@@ -3,7 +3,7 @@ version: '3.6'
 services:
   db:
     image: mysql:latest
-    container_name: todoapimysql
+    container_name: todo-api-db
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=asdf
@@ -13,7 +13,8 @@ services:
       - ./data.sql:/docker-entrypoint-initdb.d/data.sql
 
   app:
-    container_name: todo-project-app
+    container_name: todo-api
+    image: todo-api
     build:
       context: ../
       dockerfile: Dockerfile
@@ -21,7 +22,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db2:3306/todo
+      SPRING_DATASOURCE_URL: jdbc:mysql://todo-api-db:3306/todo
       SPRING_DATASOURCE_PASSWORD: asdf
     depends_on:
       - db
